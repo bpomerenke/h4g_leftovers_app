@@ -4,6 +4,8 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
+var fb = null;
+
 angular.module('starter', ['ionic', 'starter.controllers', 'firebase'])
 
 .run(function($ionicPlatform) {
@@ -13,16 +15,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'firebase'])
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
-
     }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
   });
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
+  fb = new Firebase("https://elvis-2ae10.firebaseio.com");
   $stateProvider
 
     .state('app', {
