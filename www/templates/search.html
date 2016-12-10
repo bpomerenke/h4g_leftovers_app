@@ -6,9 +6,17 @@
     </div>
     <ion-list>
         <div ng-repeat="result in searchResults" class="search-result">
-          <p><strong>{{result.resource_name}}</strong></p>
-          <p>{{result.email}}</p>
-          <p>{{result.phone}}</p>
+          <h2>
+            <strong>{{result.resource_name}}</strong>
+            <span style="float:right;">
+                <i class="ion-map" style="font-size:2em;"></i>
+                <a href="tel:+{{result.phone}}"><i class="ion-ios-telephone" style="font-size:2em;"></i></a>
+                <a href="http://{{result.web_page}}" target="_blank"><i class="ion-ios-browsers" style="font-size:2em;"></i></a>
+            </span>
+          </h2>
+          <p>{{result.address1}} </p>
+          <h3>Services:</h3
+          <p>{{result.short_description}}</p>
         </div>
     </ion-list>
   </ion-content>
