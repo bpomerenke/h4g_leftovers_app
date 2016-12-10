@@ -65,4 +65,4 @@ angular.module('starter', ['ionic', 'starter.controllers', 'firebase'])
   $urlRouterProvider.otherwise('/app/needs');
 });
 
-angular.module('starter.controllers', []);
+angular.module('starter.controllers', ['firebase']);
