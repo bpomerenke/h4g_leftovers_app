@@ -1,5 +1,5 @@
 
-angular.module('starter.controllers').controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+angular.module('starter.controllers').controller('AppCtrl', function($scope, $ionicModal, $timeout, $firebaseAuth, $location) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -29,13 +29,34 @@ angular.module('starter.controllers').controller('AppCtrl', function($scope, $io
   };
 
   // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
-
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
+  $scope.doLogin = function(loginData) {
+    console.log('logging in user');
+    var fbAuth = $firebaseAuth(fb);
+    fbAuth.$authWithPassword({
+      email: loginData.username,
+      password: loginData.password
+    }).then(function(authData) {
       $scope.closeLogin();
-    }, 1000);
+    }).catch(function(error) {
+      console.error("ERROR: " + error);
+    });
   };
+
+    $scope.registerUser = function(loginData) {
+      console.log('registering new user');
+      var fbAuth = $firebaseAuth(fb);
+        fbAuth.$createUser({email: loginData.username, password: loginData.password}).then(function() {
+            return fbAuth.$authWithPassword({
+                email: loginData.username,
+                password: loginData.password
+            });
+        }).then(function(authData) {
+          // Lets push them to a profile config page
+            //$location.path("/todo");
+
+            $scope.closeLogin();
+        }).catch(function(error) {
+            console.error("ERROR " + error);
+        });
+    };
 });
