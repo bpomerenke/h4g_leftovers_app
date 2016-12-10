@@ -4,9 +4,9 @@
     <input type="text" value="" ng-model="searchTerm" ng-change="searchFor(searchTerm)"></input>
     <ion-list>
         <div ng-repeat="result in searchResults">
-          <p><strong>{{result.resource_name}}</strong></p>
-          <p>{{result.address1}}</p>
-          <p>{{result.address2}}</p>
+          <p><strong>{{result.name}}</strong></p>
+          <p>{{result.email}}</p>
+          <p>{{result.phone}}</p>
         </div>
     </ion-list>
   </ion-content>

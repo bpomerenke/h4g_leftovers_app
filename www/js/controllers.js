@@ -41,6 +41,23 @@ angular.module('starter.controllers', [])
   };
 })
 
+.controller('BrowseCtrl', function($scope){
+  $scope.providerList = [];
+    $scope.searchResults = [];
+    return firebase.database().ref('/providerCategories').once('value').then(function(snapshot) {
+      console.log("getting categories ")
+      var providerCategories = snapshot.val();
+      var count = 0;
+      for(idx in providerCategories){
+        console.log(providerCategories[idx]);
+        $scope.searchResults.push(providers[idx]);
+        if(count++ > searchTerm.length) break;
+      }
+      $scope.$apply();
+    });
+})
+
+
 .controller('NeedsCtrl', function($scope) {
   $scope.groups = [
     {
@@ -78,11 +95,12 @@ angular.module('starter.controllers', [])
     return $scope.shownGroup === group;
   };
 })
+
 .controller('SearchController', function($scope){
   $scope.searchResults = [];
   $scope.searchFor = function(searchTerm){
     $scope.searchResults = [];
-    return firebase.database().ref('/Providers').once('value').then(function(snapshot) {
+    return firebase.database().ref('/providers').once('value').then(function(snapshot) {
       var providers = snapshot.val();
       var count = 0;
       for(idx in providers){
