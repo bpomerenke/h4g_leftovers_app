@@ -1,7 +1,6 @@
 angular.module('starter.controllers').controller('NeedsCtrl', function($scope) {
   $scope.groups = [
     {
-      active: false,
       iconActive: 'ion-sad', // icon reference http://ionicons.com/
       iconInactive: 'ion-happy-outline',
       label: 'Are you ok?',
@@ -11,7 +10,6 @@ angular.module('starter.controllers').controller('NeedsCtrl', function($scope) {
         { label: "I need somewhere to go", needCode:'shl'}]
     },
     {
-      active:false,
       iconActive: 'ion-ios-chatboxes',
       iconInactive: 'ion-ios-chatboxes-outline',
       label: 'Need to talk?',
