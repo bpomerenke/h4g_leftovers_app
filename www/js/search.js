@@ -49,6 +49,24 @@ angular.module('starter.controllers').controller('SearchController', function($s
         $scope.searchFor(null, toParams.needs);
       });
 
+  $scope.mapCategories = function(curCategories){
+    console.log(curCategories);
+    if(!curCategories) return [];
+    var result = [];
+    var categories = curCategories.split('|');
+
+    for(var i=0; i<categories.length; i++){
+      var label = "";
+      for(var j=0;j<categoryLabels.length;j++){
+        if(categoryLabels[j].needCode == categories[i]){
+          label = categoryLabels[j].label;
+          break;
+        }
+      }
+      result.push(label);
+    }
+    return result;
+  }
 
   $scope.searchFor = function(searchTerm, needs) {
     if (needs) {

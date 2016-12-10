@@ -7,6 +7,20 @@
 var fb = null;
 var currentSeeker = null; // to be established from popup
 
+var categoryLabels = [{ label: "I'm hungry", needCode:'fud'},
+{ label: "I'm sick or in pain", needCode:'med', emergencyConcern:true},
+{ label: "I need somewhere to go", needCode:'shl'},{ label: 'Medical problems', needCode:'med', emergencyConcern:true},
+{ label: 'Abuse or violence', needCode:'abv', emergencyConcern:true},
+{ label: 'Mental or emotional', needCode:'psy'},
+{ label: 'Drugs or alcohol', needCode:'sub'},
+{ label: 'Work or money', needCode:'fin'},
+{ label: 'Support and advice', needCode:'adv'},{ label: 'Food', needCode:'fud'},
+{ label: 'Shelter', needCode:'shl', emergencyConcern:true},
+{ label: 'Facilities', needCode:'fac'},
+{ label: 'Clothing or Supplies', needCode:'sup'},
+{ label: 'Work or money', needCode:'fin'},
+{ label: 'Transportation', needCode:'trn'}];
+
 angular.module('starter', ['ionic', 'starter.controllers', 'firebase'])
 
 .run(function($ionicPlatform) {

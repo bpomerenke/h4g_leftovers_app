@@ -15,6 +15,7 @@
           <p>{{result.short_description}}</p>
           <p>Distance: {{getDistance($index)}}</p>
           <p>Needs: {{result.categories}}</p>
+          <button class="button button-small button-balanced" style="margin:2px;" ng-repeat="need in mapCategories(result.categories)">{{need}}</button>
         </div>
     </ion-list>
   </ion-content>
