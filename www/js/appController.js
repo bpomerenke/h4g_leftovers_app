@@ -31,32 +31,21 @@ angular.module('starter.controllers').controller('AppCtrl', function($scope, $io
   // Perform the login action when the user submits the login form
   $scope.doLogin = function(loginData) {
     console.log('logging in user');
-    var fbAuth = $firebaseAuth(fb);
-    fbAuth.$authWithPassword({
-      email: loginData.username,
-      password: loginData.password
-    }).then(function(authData) {
+
+    firebase.auth().signInWithEmailAndPassword(loginData.username, loginData.password).then(function() {
+      console.log('logged in successfully!!');
       $scope.closeLogin();
     }).catch(function(error) {
-      console.error("ERROR: " + error);
+      console.error(error.message);
     });
   };
 
     $scope.registerUser = function(loginData) {
       console.log('registering new user');
-      var fbAuth = $firebaseAuth(fb);
-        fbAuth.$createUser({email: loginData.username, password: loginData.password}).then(function() {
-            return fbAuth.$authWithPassword({
-                email: loginData.username,
-                password: loginData.password
-            });
-        }).then(function(authData) {
-          // Lets push them to a profile config page
-            //$location.path("/todo");
-
-            $scope.closeLogin();
-        }).catch(function(error) {
-            console.error("ERROR " + error);
-        });
+      firebase.auth().createUserWithEmailAndPassword(loginData.username, loginData.password).then(function() {
+        console.log('user created!!!');
+      }).catch(function(error) {
+        console.error(error.message);
+      });
     };
 });
