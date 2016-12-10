@@ -9,13 +9,13 @@
           <h2>
             <strong>{{result.resource_name}}</strong>
             <span style="float:right;">
-                <i class="ion-map" style="font-size:2em;"></i>
+                <a href="http://maps.google.com/?q=1200{{result.address1}}"><i class="ion-map" style="font-size:2em;"></i></a>
                 <a href="tel:+{{result.phone}}"><i class="ion-ios-telephone" style="font-size:2em;"></i></a>
                 <a href="http://{{result.web_page}}" target="_blank"><i class="ion-ios-browsers" style="font-size:2em;"></i></a>
             </span>
           </h2>
           <p>{{result.address1}} </p>
-          <h3>Services:</h3
+          <h3>Services:</h3>
           <p>{{result.short_description}}</p>
         </div>
     </ion-list>
