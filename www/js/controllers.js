@@ -41,16 +41,42 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
+.controller('NeedsCtrl', function($scope) {
+  $scope.groups = [
+    {
+      active: false,
+      iconActive: 'ion-sad', // icon reference http://ionicons.com/
+     iconInactive: 'ion-happy-outline',
+    label: 'Are you ok?',
+    needs: [
+      { label: "I'm hungry", needCode:'fud'},
+      { label: "I'm sick or in pain", needCode:'med', emergencyConcern:true},
+      { label: "I need somewhere to go", needCode:'shl'}]
+  },{
+    active:false,
+    iconActive: 'ion-ios-chatboxes',
+    iconInactive: 'ion-ios-chatboxes-outline',
+    label: 'Need to talk?',
+    subLabel: 'What do you need help with?',
+    needs: [
+      //TODO: Utilize emergencyConcern as signal to interrupt and check if there is an emergency
+      { label: 'Medical problems', needCode:'med', emergencyConcern:true},
+      { label: 'Abuse or violence', needCode:'abv', emergencyConcern:true},
+      { label: 'Mental or emotional', needCode:'psy'},
+      { label: 'Drugs or alcohol', needCode:'sub'},
+      { label: 'Work or money', needCode:'fin'},
+      { label: 'Support and advice', needCode:'adv'}]
+  }
   ];
+
+  $scope.toggleGroup = function(group) {
+    group.active = !group.active;
+  };
+
+  $scope.isGroupShown = function(group) {
+    return $scope.shownGroup === group;
+  };
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
+.controller('NeedsCtrl', function($scope, $stateParams) {
 });
