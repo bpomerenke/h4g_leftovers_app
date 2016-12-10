@@ -17,7 +17,7 @@ angular.module('starter.controllers').controller('SearchController', function($s
            if (status == 'OK') {
              var location = results[0].geometry.location;
              var distance = google.maps.geometry.spherical.computeDistanceBetween(currentLatLng, location) * 0.000621371192;
-
+             distance = Math.round(distance*100)/100;
              distances.push(distance);
              $scope.$apply();
            }
