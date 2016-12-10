@@ -5,6 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 var fb = null;
+var currentSeeker = null; // to be established from popup
 
 angular.module('starter', ['ionic', 'starter.controllers', 'firebase'])
 
@@ -64,6 +65,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'firebase'])
         templateUrl: 'templates/search.html',
         controller: 'SearchController'
       }
+    },
+    params: {
+      searchTerm:null,
+      needs: null
     }
   })
 

@@ -1,4 +1,4 @@
-angular.module('starter.controllers').controller('NeedsCtrl', function($scope, $state) {
+angular.module('starter.controllers').controller('NeedsCtrl', function($scope, $rootScope, $state) {
   $scope.groups = [
     {
       iconActive: 'ion-sad', // icon reference http://ionicons.com/
@@ -38,6 +38,7 @@ angular.module('starter.controllers').controller('NeedsCtrl', function($scope, $
         { label: 'Transportation', needCode:'trn'}]
     }
   ];
+
   $scope.numActive = 0;
 
   $scope.toggleNeed = function(need) {
@@ -45,6 +46,7 @@ angular.module('starter.controllers').controller('NeedsCtrl', function($scope, $
     if(need.active) $scope.numActive++;
     else $scope.numActive--;
   }
+
   $scope.toggleGroup = function(group) {
     group.active = !group.active;
   };
@@ -53,7 +55,37 @@ angular.module('starter.controllers').controller('NeedsCtrl', function($scope, $
     return $scope.shownGroup === group;
   };
 
-  $scope.gotoSearch = function(){
-    $state.go('app.search');
+  $scope.gotoSearch = function() {
+
+    //
+    // var groups = Enumerable.From($scope.groups)
+    // var needs = groups.SelectMany(function (g) {
+    //   return Enumerable.From(g.needs).Select(function(n) { return n.active });
+    // }).ToArray();
+    //
+    //
+
+    var needs = [];
+    for (i=0;i<$scope.groups.length;i++) {
+      for(j=0;j<$scope.groups[i].needs.length;j++) {
+        if ($scope.groups[i].needs[j].active) {
+          console.log('gotta need');
+          needs.push($scope.groups[i].needs[j]);
+        }
+      }
+    }
+
+    for(i=0;i<needs.length;i++) {
+      console.log(needs[i].label);
+    }
+
+    //TODO: Get info about seeker via modal popup
+    if (!currentSeeker) {
+
+    }
+
+    // Awkwardness: prep the param, then go to the page
+    //$rootScope.$emit('updateSearchParams', needs);
+    $state.go('app.search', {needs:needs});
   }
 });
