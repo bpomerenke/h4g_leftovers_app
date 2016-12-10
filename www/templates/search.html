@@ -1,10 +1,12 @@
 <ion-view view-title="Search">
   <ion-content>
-    <label>Search</label>
-    <input type="text" value="" ng-model="searchTerm" ng-change="searchFor(searchTerm)"></input>
+    <div class="search-form">
+      <label>Search</label>
+      <input type="text" value="" ng-model="searchTerm" ng-change="searchFor(searchTerm)"></input>
+    </div>
     <ion-list>
-        <div ng-repeat="result in searchResults">
-          <p><strong>{{result.name}}</strong></p>
+        <div ng-repeat="result in searchResults" class="search-result">
+          <p><strong>{{result.resource_name}}</strong></p>
           <p>{{result.email}}</p>
           <p>{{result.phone}}</p>
         </div>

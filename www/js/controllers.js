@@ -1,4 +1,6 @@
-angular.module('starter.controllers', [])
+var fb=null;
+
+angular.module('starter.controllers', ['firebase'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
@@ -42,16 +44,14 @@ angular.module('starter.controllers', [])
 })
 
 .controller('BrowseCtrl', function($scope){
-  $scope.providerList = [];
+  console.log('browse control init');
     $scope.searchResults = [];
     return firebase.database().ref('/providerCategories').once('value').then(function(snapshot) {
-      console.log("getting categories ")
       var providerCategories = snapshot.val();
       var count = 0;
       for(idx in providerCategories){
         console.log(providerCategories[idx]);
-        $scope.searchResults.push(providers[idx]);
-        if(count++ > searchTerm.length) break;
+        $scope.searchResults.push(providerCategories[idx]);
       }
       $scope.$apply();
     });
@@ -96,19 +96,23 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('SearchController', function($scope){
+.controller('SearchController', function($scope, $firebaseObject){
   $scope.searchResults = [];
   $scope.searchFor = function(searchTerm){
-    $scope.searchResults = [];
-    return firebase.database().ref('/providers').once('value').then(function(snapshot) {
-      var providers = snapshot.val();
-      var count = 0;
-      for(idx in providers){
-        console.log(providers[idx]);
-        $scope.searchResults.push(providers[idx]);
-        if(count++ > searchTerm.length) break;
-      }
-      $scope.$apply();
-    });
+    fb = new Firebase("https://elvis-2ae10.firebaseio.com");
+
+    var syncObject = $firebaseObject(fb.child("providers/"));
+    syncObject.$bindTo($scope, "searchResults");
+    // $scope.searchResults = [];
+    // return firebase.database().ref('/providers').once('value').then(function(snapshot) {
+    //   var providers = snapshot.val();
+    //   var count = 0;
+    //   for(idx in providers){
+    //     console.log(providers[idx]);
+    //     $scope.searchResults.push(providers[idx]);
+    //     if(count++ > searchTerm.length) break;
+    //   }
+    //   $scope.$apply();
+    // });
   };
 });
