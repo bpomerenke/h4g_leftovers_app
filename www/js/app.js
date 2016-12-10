@@ -65,6 +65,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'firebase'])
         templateUrl: 'templates/search.html',
         controller: 'SearchController'
       }
+    },
+    params: {
+      searchTerm:null,
+      needs: null
     }
   })
 

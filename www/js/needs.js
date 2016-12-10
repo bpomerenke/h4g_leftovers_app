@@ -57,7 +57,6 @@ angular.module('starter.controllers').controller('NeedsCtrl', function($scope, $
 
   $scope.gotoSearch = function() {
 
-    console.log('gotta go');
     //
     // var groups = Enumerable.From($scope.groups)
     // var needs = groups.SelectMany(function (g) {
@@ -76,10 +75,9 @@ angular.module('starter.controllers').controller('NeedsCtrl', function($scope, $
       }
     }
 
-    for(i=0;i<needs.length;i++){
+    for(i=0;i<needs.length;i++) {
       console.log(needs[i].label);
     }
-
 
     //TODO: Get info about seeker via modal popup
     if (!currentSeeker) {
@@ -87,7 +85,7 @@ angular.module('starter.controllers').controller('NeedsCtrl', function($scope, $
     }
 
     // Awkwardness: prep the param, then go to the page
-    $rootScope.$emit('updateSearchParams', needs);
-    $state.go('app.search');
+    //$rootScope.$emit('updateSearchParams', needs);
+    $state.go('app.search', {needs:needs});
   }
 });
