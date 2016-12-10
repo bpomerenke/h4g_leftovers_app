@@ -3,15 +3,15 @@
     <h1 class="title">User settings</h1>
     <div class="buttons">
       <!-- TODO: logic for closeUserForm to ask whether to save form data -->
-      <button class="button button" onClick="closeUserForm()">Close</button>
+      <button class="button button" ng-click="saveUser(userData)">Close</button>
     </div>
   </ion-header-bar>
   <ion-content>
     <!-- TODO: show message about anonymous user, if not from login form and not logged in.
          if from login to register expect blank form,
-         otherwise for logged in user, populate 
+         otherwise for logged in user, populate
          if no ID, & not registering, we create anonymous
-         
+
           -->
         <label class="">You are currently anonymous. Save, if I can remember some things for you.</label>
     <form ng-submit="">
@@ -27,7 +27,7 @@
         <label class="item item-input">
           <span class="input-label" >How do you use this service?</span>
           <select id="userTypeSelection" ng-model="userData.userType" required onclick="">
-            <option value="">---Please select---</option> 
+            <option value="">---Please select---</option>
             <option value="seeker">Need Help</option>
             <option value="business">Business that can help</option>
             <option value="volunteer">Volunteer</option>
@@ -56,7 +56,7 @@
         <label class="item item-input">
           <span class="input-label">I have children with me</span>
           <input type="checkbox" ng-model="userData.withChildren">
-        </label>        
+        </label>
         <label class="item item-input">
           <span class="input-label">I'm pregnant</span>
           <input type="checkbox" ng-model="userData.pregnant">
@@ -82,39 +82,17 @@
           <input type="checkbox" ng-model="userData.veteran">
         </label>
        <label class="item">
-          <button class="button button-block" onClick="continueSearch()">Continue without saving</button>
+          <button class="button button-block"  ng-click="saveUser(userData)">Continue without saving</button>
         </label>
       </div>
         <label class="item">
           <button class="button button-block button-positive" ng-click="saveUser(userData)">Save</button>
         </label>
       </div>
-      <script>
+      <script type="text/javascript">
         $("#seekerSelectionPanel").hide();
         $("#businessDataDiv").hide();
-        function closeUserForm()
-{
-    closing();
-}
-
-function continueSearch()
-{
-    closing();
-}
-function saveUser(userData)
-{
-    closing();
-}
-function closing()
-{
-  $alert("closing");
-  //  $modalInstance.Close();
-  //dialog.close();
-  app.controller('user', function($scope, $http) {
-    $scope.dismiss();
-});
-}
-      </script>      
+      </script>
     </form>
   </ion-content>
 </ion-modal-view>

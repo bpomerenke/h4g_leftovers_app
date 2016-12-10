@@ -54,6 +54,10 @@ angular.module('starter.controllers').controller('NeedsCtrl', function($scope, $
     else $scope.numActive--;
   }
 
+  $scope.saveUser = function(user) {
+    $scope.modal.hide();
+  }
+
   $scope.toggleGroup = function(group) {
     group.active = !group.active;
   };
