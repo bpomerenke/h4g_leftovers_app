@@ -1,4 +1,11 @@
-angular.module('starter.controllers').controller('NeedsCtrl', function($scope, $rootScope, $state) {
+angular.module('starter.controllers').controller('NeedsCtrl', function($scope, $ionicModal, $rootScope, $state) {
+
+  $ionicModal.fromTemplateUrl('templates/user.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+
   $scope.groups = [
     {
       iconActive: 'ion-sad', // icon reference http://ionicons.com/
@@ -82,10 +89,23 @@ angular.module('starter.controllers').controller('NeedsCtrl', function($scope, $
     //TODO: Get info about seeker via modal popup
     if (!currentSeeker) {
 
+      $scope.modal.show();
+
+      // $scope.$on('$destroy', function() {
+      //   $scope.modal.remove();
+      // });
+
+      $scope.$on('modal.hidden', function() {
+        $state.go('app.search', {needs:needs});
+      });
+
+    }
+    else {
+      $state.go('app.search', {needs:needs});
     }
 
     // Awkwardness: prep the param, then go to the page
     //$rootScope.$emit('updateSearchParams', needs);
-    $state.go('app.search', {needs:needs});
+
   }
 });
