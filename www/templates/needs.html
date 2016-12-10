@@ -11,8 +11,10 @@
        </ion-item>
        <ion-item class="item-accordion"
                  ng-repeat="need in group.needs"
-                 ng-show="group.active">
-         {{need.label}}
+                 ng-show="group.active"
+                 ng-class="{'active-need' : need.active }"
+                 ng-click="toggleNeed(need);">
+         {{need.label}} <i style="float: right;" class="ion-checkmark" ng-if="need.active"></i>
        </ion-item>
      </div>
       </ion-list>
