@@ -1,5 +1,13 @@
 <ion-view view-title="Search">
   <ion-content>
-    <h1>Search</h1>
+    <label>Search</label>
+    <input type="text" value="" ng-model="searchTerm" ng-change="searchFor(searchTerm)"></input>
+    <ion-list>
+        <div ng-repeat="result in searchResults">
+          <p><strong>{{result.resource_name}}</strong></p>
+          <p>{{result.address1}}</p>
+          <p>{{result.address2}}</p>
+        </div>
+    </ion-list>
   </ion-content>
 </ion-view>

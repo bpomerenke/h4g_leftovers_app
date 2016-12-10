@@ -77,4 +77,20 @@ angular.module('starter.controllers', [])
   $scope.isGroupShown = function(group) {
     return $scope.shownGroup === group;
   };
+})
+.controller('SearchController', function($scope){
+  $scope.searchResults = [];
+  $scope.searchFor = function(searchTerm){
+    $scope.searchResults = [];
+    return firebase.database().ref('/Providers').once('value').then(function(snapshot) {
+      var providers = snapshot.val();
+      var count = 0;
+      for(idx in providers){
+        console.log(providers[idx]);
+        $scope.searchResults.push(providers[idx]);
+        if(count++ > searchTerm.length) break;
+      }
+      $scope.$apply();
+    });
+  };
 });
