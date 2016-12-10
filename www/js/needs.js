@@ -22,6 +22,20 @@ angular.module('starter.controllers').controller('NeedsCtrl', function($scope, $
         { label: 'Drugs or alcohol', needCode:'sub'},
         { label: 'Work or money', needCode:'fin'},
         { label: 'Support and advice', needCode:'adv'}]
+    },
+    {
+      iconActive: 'ion-ios-home',
+      iconInactive: 'ion-ios-home-outline',
+      label: 'Need anything?',
+      subLabel: 'Do you have the things you need?',
+      needs: [
+      //TODO: Utilize emergencyConcern as signal to interrupt and check if there is an emergency
+        { label: 'Food', needCode:'fud'},
+        { label: 'Shelter', needCode:'shl', emergencyConcern:true},
+        { label: 'Facilities', needCode:'fac'},
+        { label: 'Clothing or Supplies', needCode:'sup'},
+        { label: 'Work or money', needCode:'fin'},
+        { label: 'Transportation', needCode:'trn'}]
     }
   ];
   $scope.numActive = 0;
