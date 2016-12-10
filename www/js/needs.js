@@ -26,9 +26,12 @@ angular.module('starter.controllers').controller('NeedsCtrl', function($scope) {
         { label: 'Support and advice', needCode:'adv'}]
     }
   ];
+  $scope.numActive = 0;
 
   $scope.toggleNeed = function(need) {
     need.active = need.active ? !need.active : true;
+    if(need.active) $scope.numActive++;
+    else $scope.numActive--;
   }
   $scope.toggleGroup = function(group) {
     group.active = !group.active;
