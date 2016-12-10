@@ -33,8 +33,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'firebase'])
     messagingSenderId: "1092206200438"
   };
   firebase.initializeApp(config);
-
   fb = firebase.database().ref();
+
+
+
 //  fb = new Firebase("https://elvis-2ae10.firebaseio.com");
   $stateProvider
 
@@ -43,6 +45,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'firebase'])
     abstract: true,
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl'
+  })
+
+  .state('app.userAuth', {
+    url: '/userAuth',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/login.html',
+        controller: 'AuthCtrl'
+      }
+    }
   })
 
   .state('app.search', {
