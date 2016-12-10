@@ -26,37 +26,45 @@ angular.module('starter.controllers').controller('AppCtrl', function($scope, $io
   // Open the login modal
   $scope.login = function() {
     $scope.modal.show();
+// FirebaseUI config.
+    var uiConfig = {
+//        signInSuccessUrl: '<url-to-redirect-to-on-success>',
+      signInOptions: [
+        // Leave the lines as is for the providers you want to offer your users.
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+//          firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+//          firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+//          firebase.auth.GithubAuthProvider.PROVIDER_ID,
+        firebase.auth.EmailAuthProvider.PROVIDER_ID
+      ],
+      // Terms of service url.
+//        tosUrl: '<your-tos-url>'
+    };
+
+    // Initialize the FirebaseUI Widget using Firebase.
+    var ui = new firebaseui.auth.AuthUI(firebase.auth());
+    // The start method will wait until the DOM is loaded.
+    ui.start('#firebaseui-auth-container', uiConfig);
   };
 
   // Perform the login action when the user submits the login form
   $scope.doLogin = function(loginData) {
     console.log('logging in user');
-    var fbAuth = $firebaseAuth(fb);
-    fbAuth.$authWithPassword({
-      email: loginData.username,
-      password: loginData.password
-    }).then(function(authData) {
+
+    firebase.auth().signInWithEmailAndPassword(loginData.username, loginData.password).then(function() {
+      console.log('logged in successfully!!');
       $scope.closeLogin();
     }).catch(function(error) {
-      console.error("ERROR: " + error);
+      console.error(error.message);
     });
   };
 
     $scope.registerUser = function(loginData) {
       console.log('registering new user');
-      var fbAuth = $firebaseAuth(fb);
-        fbAuth.$createUser({email: loginData.username, password: loginData.password}).then(function() {
-            return fbAuth.$authWithPassword({
-                email: loginData.username,
-                password: loginData.password
-            });
-        }).then(function(authData) {
-          // Lets push them to a profile config page
-            //$location.path("/todo");
-
-            $scope.closeLogin();
-        }).catch(function(error) {
-            console.error("ERROR " + error);
-        });
+      firebase.auth().createUserWithEmailAndPassword(loginData.username, loginData.password).then(function() {
+        console.log('user created!!!');
+      }).catch(function(error) {
+        console.error(error.message);
+      });
     };
 });

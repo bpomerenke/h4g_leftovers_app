@@ -1,28 +1,5 @@
-<ion-modal-view>
-  <ion-header-bar>
-    <h1 class="title">Login</h1>
-    <div class="buttons">
-      <button class="button button-clear" ng-click="closeLogin()">Close</button>
-    </div>
-  </ion-header-bar>
+<ion-view view-title="Login">
   <ion-content>
-    <form ng-submit="">
-      <div class="list">
-        <label class="item item-input">
-          <span class="input-label">Username</span>
-          <input type="text" ng-model="loginData.username">
-        </label>
-        <label class="item item-input">
-          <span class="input-label">Password</span>
-          <input type="password" ng-model="loginData.password">
-        </label>
-        <label class="item">
-          <button class="button button-block button-positive" ng-click="doLogin(loginData)">Log in</button>
-        </label>
-        <label class="item">
-          <button class="button button-block button-positive" ng-click="registerUser(loginData)">Register</button>
-        </label>
-      </div>
-    </form>
+    <div id="firebaseui-auth-container"></div>
   </ion-content>
-</ion-modal-view>
+</ion-view>
