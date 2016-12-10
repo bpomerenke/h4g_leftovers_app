@@ -25,7 +25,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'firebase'])
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
-  fb = new Firebase("https://elvis-2ae10.firebaseio.com");
+  var config = {
+    apiKey: "AIzaSyBFib-8ceqG7UD0fn7ZV8OXnfwkeEc9e84",
+    authDomain: "elvis-2ae10.firebaseapp.com",
+    databaseURL: "https://elvis-2ae10.firebaseio.com",
+    storageBucket: "elvis-2ae10.appspot.com",
+    messagingSenderId: "1092206200438"
+  };
+  firebase.initializeApp(config);
+
+  fb = firebase.database().ref();
+//  fb = new Firebase("https://elvis-2ae10.firebaseio.com");
   $stateProvider
 
     .state('app', {
