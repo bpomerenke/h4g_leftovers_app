@@ -96,6 +96,7 @@ angular.module('starter.controllers').controller('NeedsCtrl', function($scope, $
       // });
 
       $scope.$on('modal.hidden', function() {
+        currentSeeker = {};
         $state.go('app.search', {needs:needs});
       });
 
