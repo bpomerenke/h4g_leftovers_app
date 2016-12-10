@@ -1,4 +1,4 @@
-angular.module('starter.controllers').controller('NeedsCtrl', function($scope) {
+angular.module('starter.controllers').controller('NeedsCtrl', function($scope, $state) {
   $scope.groups = [
     {
       iconActive: 'ion-sad', // icon reference http://ionicons.com/
@@ -38,4 +38,8 @@ angular.module('starter.controllers').controller('NeedsCtrl', function($scope) {
   $scope.isGroupShown = function(group) {
     return $scope.shownGroup === group;
   };
+
+  $scope.gotoSearch = function(){
+    $state.go('app.search');
+  }
 });
