@@ -12,3 +12,22 @@
 .list .item.item-accordion.ng-hide-remove {
   display: block !important;
 }
+
+.search-form {
+  padding:2em;
+  border-bottom: 0.1em solid #AAA;
+}
+
+.search-form label {
+  font-size: 2em;
+}
+
+.search-form input {
+  font-size: 2em;
+  border: 0.1em solid #CCC;
+}
+
+.search-result {
+  padding:2em;
+  border-bottom: 0.05em solid #AAA;
+}
