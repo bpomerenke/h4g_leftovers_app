@@ -27,6 +27,9 @@ angular.module('starter.controllers').controller('NeedsCtrl', function($scope) {
     }
   ];
 
+  $scope.toggleNeed = function(need) {
+    need.active = need.active ? !need.active : true;
+  }
   $scope.toggleGroup = function(group) {
     group.active = !group.active;
   };
