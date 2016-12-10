@@ -3,7 +3,7 @@
     <h1 class="title">User settings</h1>
     <div class="buttons">
       <!-- TODO: logic for closeUserForm to ask whether to save form data -->
-      <button class="button button-clear" ng-click="closeUserForm()">Close</button>
+      <button class="button button" onClick="closeUserForm()">Close</button>
     </div>
   </ion-header-bar>
   <ion-content>
@@ -25,43 +25,53 @@
           <input type="password" ng-model="userData.password">
         </label>
         <label class="item item-input">
-          <span class="input-label">How do you use this service?</span>
-          <select ng-model="userData.userType" required>
+          <span class="input-label" >How do you use this service?</span>
+          <select id="userTypeSelection" ng-model="userData.userType" required onclick="">
+            <option value="">---Please select---</option> 
             <option value="seeker">Need Help</option>
             <option value="business">Business that can help</option>
             <option value="volunteer">Volunteer</option>
             <option value="provider">Serving Organization</option>
         </label>
-        
+        <!-- only show, if business or provider -->
+        <div id="businessDataDiv">
+         <label class="item item-input">
+          <span class="input-label">Organization/Business</span>
+          <input type="text" ng-model="userData.Organization">
+        </label>
+      </div>
         <!-- TODO: only show, if anonymous-->
+        <div id="seekerSelectionPanel">
         <label>Tell me about special things about you and your needs.</label>
         <label class="item item-input">
-          <span class="input-label">I'm a teen</span>
-          <input type="checkbox" ng-model="userData.teen">
-        </label>
-        <label class="item item-input">
-          <span class="input-label">I'm a young adult (18-24)</span>
-          <input type="checkbox" ng-model="userData.youngAdult">
+          <span class="input-label">Age Group</span>
+          <select ng-model="userData.ageGroup">
+              <option value="all" >Not Specified</option>
+              <option value="teen"></option>
+              <option value="youngAdult"></option>
+              <option value="Adult"></option>
+              <option value="Senior"></option>
+          </select>
         </label>
         <label class="item item-input">
           <span class="input-label">I have children with me</span>
           <input type="checkbox" ng-model="userData.withChildren">
-        </label>
-        <label class="item item-input">
-          <span class="input-label">I'm a woman</span>
-          <input type="checkbox" ng-model="userData.woman">
-        </label>
+        </label>        
         <label class="item item-input">
           <span class="input-label">I'm pregnant</span>
           <input type="checkbox" ng-model="userData.pregnant">
         </label>
         <label class="item item-input">
-          <span class="input-label">I'm a man</span>
-          <input type="password" ng-model="userData.male">
+          <span class="input-label">Gender</span>
+          <select ng-model="userData.ageGroup">
+              <option value="all" >Not Specified</option>
+              <option value="female">Woman</option>
+              <option value="male">Man</option>
+          </select>
         </label>
         <label class="item item-input">
-          <span class="input-label">I'm transgender</span>
-          <input type="password" ng-model="userData.transgender">
+          <span class="input-label">Need transgender safe</span>
+          <input type="checkbox" ng-model="userData.transgender">
         </label>
         <label class="item item-input">
           <span class="input-label">Seeking safety from voilence</span>
@@ -69,19 +79,42 @@
         </label>
         <label class="item item-input">
           <span class="input-label">I'm a veteran</span>
-          <input type="password" ng-model="userData.veteran">
-        </label>
-        <label class="item item-input">
-          <span class="input-label">I'm a senior</span>
-          <input type="password" ng-model="userData.senior">
+          <input type="checkbox" ng-model="userData.veteran">
         </label>
        <label class="item">
-          <button class="button button-block" ng-click="continueSearch()">Continue without saving</button>
+          <button class="button button-block" onClick="continueSearch()">Continue without saving</button>
         </label>
+      </div>
         <label class="item">
           <button class="button button-block button-positive" ng-click="saveUser(userData)">Save</button>
         </label>
       </div>
+      <script>
+        $("#seekerSelectionPanel").hide();
+        $("#businessDataDiv").hide();
+        function closeUserForm()
+{
+    closing();
+}
+
+function continueSearch()
+{
+    closing();
+}
+function saveUser(userData)
+{
+    closing();
+}
+function closing()
+{
+  $alert("closing");
+  //  $modalInstance.Close();
+  //dialog.close();
+  app.controller('user', function($scope, $http) {
+    $scope.dismiss();
+});
+}
+      </script>      
     </form>
   </ion-content>
 </ion-modal-view>

@@ -1,6 +1,6 @@
       function OnTypeSelected()
       {
-        switch $("#userTypeSelection").val()
+        switch ($("#userTypeSelection").val())
         {
           case "seeker":
             $("#seekerSelectionPanel").show();
@@ -24,4 +24,3 @@
           break;
         }
       }
-      
